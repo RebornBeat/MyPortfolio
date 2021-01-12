@@ -16,6 +16,32 @@
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 4px
 }
+.name{
+	position: relative;
+	top: 8%;
+	text-align: center;
+	color: white;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 2.5rem;
+}
 
+#contact_container{
+	position: relative;
+	top: 25%;
+	display: flex;
+	justify-content: space-between;
+	height: 10%;
+	margin-left: 17.5%;
+	width: 65%;
+}
+
+.contact_wrapper{
+	width: 45%;
+	height: 100%;
+	border: solid;	
+	border-color: white;
+}
 
 
