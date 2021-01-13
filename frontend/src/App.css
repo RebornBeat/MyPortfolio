@@ -29,7 +29,7 @@
 
 #contact_container{
 	position: relative;
-	top: 25%;
+	top: 29%;
 	display: flex;
 	justify-content: space-between;
 	height: 10%;
@@ -47,6 +47,12 @@
 	text-align: center;
 	color: white;
 	display: flex;
+}
+
+.contact_wrapper:hover{
+	cursor: pointer;
+	background-color: white;
+	color: #4249F4;
 }
 
 .logo{
