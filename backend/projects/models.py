@@ -6,3 +6,4 @@ class Project(models.Model):
     Description = models.CharField(max_length=120)
     PhotoName = models.CharField(max_length=120)
     Tags = models.JSONField()
+    GithubLink = models.CharField(max_length=120)
