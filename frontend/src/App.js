@@ -12,10 +12,10 @@ function App() {
 			</div>
 			<div id="contact_container">
 				<div className="contact_wrapper">
-					
+					View Github
 				</div>	
 				<div className="contact_wrapper">
-					
+					Contact Me
 				</div>						
 			</div>
 		</div>
