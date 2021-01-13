@@ -18,7 +18,7 @@
 }
 .name{
 	position: relative;
-	top: 8%;
+	top: 12.5%;
 	text-align: center;
 	color: white;
 	font-family: Roboto;
@@ -38,6 +38,7 @@
 }
 
 .contact_wrapper{
+	position: relative;
 	width: 45%;
 	height: 100%;
 	border: solid;	
@@ -45,6 +46,15 @@
 	border-color: white;
 	text-align: center;
 	color: white;
+	display: flex;
 }
 
+.logo{
+	width: 10%;
+	margin-left: 10%;
+}
 
+.contact_text{
+	margin-left: 11%;
+	font-weight: 500;
+}

@@ -1,4 +1,6 @@
 import './App.css';
+import github from './github.svg'
+import email from './email.svg'
 
 function App() {
   return (
@@ -12,10 +14,12 @@ function App() {
 			</div>
 			<div id="contact_container">
 				<div className="contact_wrapper">
-					View Github
+					<img src={github} className="logo" alt="Logo" />
+					<span className="contact_text"> View Github </span>
 				</div>	
 				<div className="contact_wrapper">
-					Contact Me
+					<img src={email} className="logo" alt="Logo" />
+					<span className="contact_text"> Contact Me </span>
 				</div>						
 			</div>
 		</div>
