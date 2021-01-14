@@ -10,4 +10,4 @@ def fetch(request):
     print(all_projects)
     for i in all_projects:
         project_dict[i.pk] = { "Title": i.Title,  "Description": i.Description, "PhotoName": i.PhotoName, "Tags": i.Tags, "GithubLink": i.GithubLink}
-    return JsonResponse({'details': 'details'})
+    return JsonResponse({'details': project_dict})

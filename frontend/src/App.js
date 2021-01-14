@@ -9,7 +9,7 @@ import blue_email from './blue_email.svg'
 export default class App extends Component {
 	constructor(props) {
 	super(props);
-	this.state = { toggled: "n/a" };
+	this.state = { toggled: "n/a",  data: "n/a", fetched: false};
 	}
 	
 	onHover (e) {
@@ -34,14 +34,16 @@ export default class App extends Component {
 	
 	
 	componentDidUpdate() {
-		console.log("update", this.state.toggled)
+		console.log("update", this.state)
 	}
 	
 	render () {
-		let data = { role: this.toggled }
-		axios.post(`/fetch/`, { data }).then((res) =>  {
-			console.log(res)
-		})
+		
+		if ( this.state.fetched === false ){
+			axios.post(`/fetch/`).then((res) =>  {
+				this.setState({ data: res.data.details, fetched: true })
+			}) 
+		}
 			
 		return (
 		<div id="container">
