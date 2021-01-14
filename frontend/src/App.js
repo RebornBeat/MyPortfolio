@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
 import github from './github.svg'
 import blue_github from './blue_github.svg'
@@ -37,7 +38,11 @@ export default class App extends Component {
 	}
 	
 	render () {
-	
+		let data = { role: this.toggled }
+		axios.post(`/fetch/`, { data }).then((res) =>  {
+			console.log(res)
+		})
+			
 		return (
 		<div id="container">
 			<div id="info_container">
