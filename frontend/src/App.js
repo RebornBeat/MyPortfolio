@@ -59,6 +59,9 @@ export default class App extends Component {
 						<span className="contact_text" id="email" > Contact Me </span>
 					</div>						
 				</div>
+				<div id="projects_container">
+				
+				</div>
 			</div>
 		</div>
 		);
