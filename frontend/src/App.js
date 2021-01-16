@@ -6,10 +6,51 @@ import blue_github from './blue_github.svg'
 import email from './email.svg'
 import blue_email from './blue_email.svg'
 
+export class ProjectDisplay extends Component {
+	
+	render() {
+		
+		let projectJSON = this.props.data[this.props.index]
+		
+		let stackList = []
+		
+		for ( let i in projectJSON.Tags.data) {
+			stackList.push(<span className="stack">{projectJSON.Tags.data[i]}</span>)
+		}
+			
+		let descriptionList = []
+
+		for ( let i in projectJSON.Description.data) {
+			descriptionList.push(<li>{projectJSON.Description.data[i]}</li>)
+		}
+		
+		return (
+		
+			<div id="projects_wrapper_main">
+				<div id="stack_container_main">
+					{stackList}
+				</div>
+				<span id="project_title">{projectJSON.Title}</span>
+				<div id="general_container">
+					<div id="photo_container">
+						<img src={`${process.env.PUBLIC_URL}/assets/${projectJSON.PhotoName}`} alt="this slowpoke moves" width="100%" height="100%"/>
+					</div>
+					<div id="description_container">
+						<ul>
+							{descriptionList}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		);
+	}
+}
+
 export default class App extends Component {
 	constructor(props) {
 	super(props);
-	this.state = { toggled: "n/a",  data: "n/a", fetched: false};
+	this.state = { toggled: "n/a",  data: "n/a", fetched: false, index: 2};
 	}
 	
 	onHover (e) {
@@ -44,7 +85,7 @@ export default class App extends Component {
 				this.setState({ data: res.data.details, fetched: true })
 			}) 
 		}
-			
+		
 		return (
 		<div id="container">
 			<div id="info_container">
@@ -66,9 +107,9 @@ export default class App extends Component {
 						<span className="contact_text" id="email" > Contact Me </span>
 					</div>						
 				</div>
-				<div id="projects_container">
-				
-				</div>
+			</div>
+			<div id="projects_container">
+				{ this.state.fetched === true && <ProjectDisplay data = {this.state.data} index = {this.state.index}/> }
 			</div>
 		</div>
 		);

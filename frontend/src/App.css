@@ -1,4 +1,6 @@
 #container {
+  position: absolute;
+  width: 100vw;
   height: 100vh;
   background-image: url("./background.svg");
   background-position: center;
@@ -64,3 +66,109 @@
 	margin-left: 11%;
 	font-weight: 500;
 }
+
+#projects_container{
+	position: relative;
+	top: 10%;
+	width: 100%;
+	height: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.projects_wrapper_side{
+	position: relative;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 2px;
+	width: 16%;
+	height: 50%;
+	
+}
+
+.projects_wrapper_side:nth-child(1){
+	position: relative;
+	left: 4%;
+}
+
+.projects_wrapper_side:nth-child(3){
+	position: relative;
+	right: 4%;
+}
+
+#projects_wrapper_main{
+	background: #FFFFFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 3px;
+	width: 50%;
+	height: 100%;
+	text-align: center;
+}
+
+#project_title {
+	position: relative;
+	top: 5%;
+	font-weight: 600;
+}
+	
+#stack_container_main{
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+}
+
+#stack_container_side_wrapper{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+#stack_container_side{
+	display: flex;
+	justify-content: center;
+	
+}
+
+.stack{
+	background-color: #4249F4;
+	color: white;
+	border: solid;
+	border-color: #4249F4;
+	border-radius: 2px;
+	font-size: .9rem;
+}
+
+.stack:not(:last-child){
+	margin-right: 1.5%;
+}
+
+.projects_wrapper_side .stack{
+	font-size: .7rem;
+}
+
+#general_container{
+	position: relative;
+	top: 5%;
+	width: 100%;
+	height: 77%;
+	display: flex;
+}
+
+#photo_container{
+	position: relative;
+	top: 10%;
+	margin-left: 2.5%;
+	width: 30%;
+	height: 80%;
+	border: solid;
+}
+
+#description_container{
+	position: relative;
+	top: 10%;
+	margin-left: 1.5%;
+	width: 65%;
+	height: 80%;
+}
+
