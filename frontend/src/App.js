@@ -50,7 +50,7 @@ export class ProjectDisplay extends Component {
 export default class App extends Component {
 	constructor(props) {
 	super(props);
-	this.state = { toggled: "n/a",  data: "n/a", fetched: false, index: 2};
+	this.state = { toggled: "n/a", data: "n/a", fetched: false, index: 2, prev: false, next: false};
 	}
 	
 	onHover (e) {
@@ -75,16 +75,36 @@ export default class App extends Component {
 	
 	
 	componentDidUpdate() {
-		console.log("update", this.state)
+		
+		if (this.state.data[this.state.index - 1] != undefined ) {
+			if ( this.state.prev != true ) {
+				this.setState({ prev: true })
+			}
+		} else {
+			if ( this.state.prev != false ) {
+				this.setState({ prev: false })
+			}
+		}
+		
+		if (this.state.data[this.state.index + 1] != undefined ) {
+			if ( this.state.next != true ) {
+				this.setState({ next: true })
+			}
+		} else {
+			if ( this.state.next != false ) {
+				this.setState({ next: false })
+			}
+		}
+		
+	}
+	
+	componentDidMount() {
+		axios.post(`/fetch/`).then((res) =>  {
+			this.setState({ data: res.data.details, fetched: true })
+		}) 
 	}
 	
 	render () {
-		
-		if ( this.state.fetched === false ){
-			axios.post(`/fetch/`).then((res) =>  {
-				this.setState({ data: res.data.details, fetched: true })
-			}) 
-		}
 		
 		return (
 		<div id="container">
@@ -109,7 +129,9 @@ export default class App extends Component {
 				</div>
 			</div>
 			<div id="projects_container">
+				{ this.state.prev === true && <img src={`${process.env.PUBLIC_URL}/assets/left_arrow.svg`} id="left_button" alt="Left Arrow" width="5%" height="20%"/> }
 				{ this.state.fetched === true && <ProjectDisplay data = {this.state.data} index = {this.state.index}/> }
+				{ this.state.next === true && <img src={`${process.env.PUBLIC_URL}/assets/right_arrow.svg`} id="right_button" alt="Left Arrow" width="5%" height="20%"/> }
 			</div>
 		</div>
 		);
