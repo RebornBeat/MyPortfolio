@@ -47,8 +47,8 @@ export class ProjectDisplay extends Component {
 					</div>
 				</div>
 				<div className="links_container">
-					<span className="project_link"> View Demo </span>
-					<a href={projectJSON.GithubLink} target="_blank" rel="noopener noreferrer"><img src={round_github} id="Github_Link" alt="this slowpoke moves" height="20%"></img></a>
+					<span className="project_link demo_link"> View Demo </span>
+					<a href={projectJSON.GithubLink} target="_blank" rel="noopener noreferrer" className="project_link"><img src={round_github} id="Github_Link" alt="this slowpoke moves" height="90%"></img></a>
 				</div>
 			</div>
 
