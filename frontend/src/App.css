@@ -1,11 +1,19 @@
 #container {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background-image: url("./background.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+	position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#bg_container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./background.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #info_container{
@@ -16,11 +24,14 @@
 	top: 5%;
 	background: #4249F4;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 4px
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
 }
 .name{
 	position: relative;
-	top: 12.5%;
 	text-align: center;
 	color: white;
 	font-family: Roboto;
@@ -31,18 +42,16 @@
 
 #contact_container{
 	position: relative;
-	top: 29%;
 	display: flex;
-	justify-content: space-between;
-	height: 10%;
-	margin-left: 17.5%;
+	justify-content: space-around;
+	height: 20%;
 	width: 65%;
 }
 
 .contact_wrapper{
 	position: relative;
 	width: 45%;
-	height: 100%;
+	height: 50%;
 	border: solid;	
 	border-radius: 4px;
 	border-color: white;
@@ -175,6 +184,22 @@
 	height: 80%;
 	display: flex;
 	align-items: center;
+	text-align: left;
+}
+
+.links_container{
+	position: relative;
+	width: 100%;
+	height: 9%;
+	display: flex;
+	align-items: center;
+}
+
+#Github_Link{
+}
+
+#Github_Link:hover{
+	cursor: pointer;
 }
 
 #left_button {
@@ -195,6 +220,10 @@
 	cursor: pointer
 }
 
+.contact_wrapper_mobile {
+	display: none;
+}
+
 @keyframes fadein {
     from {
         opacity:0.5;
@@ -202,4 +231,83 @@
     to {
         opacity:1;
     }
+}
+
+@media only screen and (max-width: 900px) and (min-device-width: 561px){
+	
+	
+	#info_container{ 
+		width: 80vw;
+		margin-left: 10%;
+	}
+	
+
+	
+}
+
+@media only screen and (max-width: 768px) and (min-device-width: 0px){
+	
+	.contact_wrapper_mobile {
+		display: block;
+		width: 40%;
+	}
+	
+	.contact_wrapper {
+		display: none;
+	}
+	
+	.logo_mobile {
+		width: 80%;
+	}
+	
+	#contact_container {
+		width: 25%;
+		margin-left: 0;
+	}
+	
+}
+
+@media only screen and (max-width: 560px) and (min-device-width: 421px){
+	
+	#info_container{ 
+		width: 80%;
+		margin-left: 10%;
+	}
+	
+	
+}
+
+@media only screen and (max-width: 767px) and (min-device-width: 421px){
+	
+	#general_container { 
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	#projects_container {
+		height: 90%;
+	}
+	
+	#photo_container {
+		width: 50%;
+		height: 40%;
+	}
+}
+
+@media only screen and (max-width: 420px) and (min-device-width: 0px){
+
+	#info_container{ 
+		width: 80%;
+		margin-left: 10%;
+	}
+	
+	
+	.contact_text{
+		font-size: 0.7rem;
+	}
+
+	.name {
+		font-size: 1.8rem;
+	}
+	
 }
