@@ -7,3 +7,4 @@ class Project(models.Model):
     PhotoName = models.CharField(max_length=120)
     Tags = models.JSONField()
     GithubLink = models.CharField(max_length=120)
+    DemoLink = models.CharField(max_length=120)

@@ -9,5 +9,9 @@ def fetch(request):
     all_projects = Project.objects.all()
     print(all_projects)
     for i in all_projects:
-        project_dict[i.pk] = { "Title": i.Title,  "Description": i.Description, "PhotoName": i.PhotoName, "Tags": i.Tags, "GithubLink": i.GithubLink}
+        project_dict[i.pk] = { "Title": i.Title,  "Description": i.Description, "PhotoName": i.PhotoName, "Tags": i.Tags, "GithubLink": i.GithubLink, "DemoLink": i.DemoLink }
     return JsonResponse({'details': project_dict})
+
+@csrf_exempt
+def contact(request):
+    return JsonResponse({'details': "hello"})
