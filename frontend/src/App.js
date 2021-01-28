@@ -12,7 +12,7 @@ import round_email_mobile from './email_round_mobile.svg'
 export class ContactDisplay extends Component {	
 	constructor(props) {
 	super(props);
-	this.state = { fromEmail: "n/a", subject: "n/a", content: "n/a"};
+	this.state = { fromEmail: "n/a", subject: "n/a", content: "n/a", res: "n/a"};
 	}
 	
 	onClick (e) {
@@ -23,7 +23,28 @@ export class ContactDisplay extends Component {
 			let data = { fromEmail: this.state.fromEmail, subject: this.state.subject, content: this.state.content }
 			
 			axios.post(`/contact/`, { data }).then((res) =>  {
-				this.props.parentCallback(e.target.id);
+				
+				if ( res.data.details === "accepted" ){
+					alert(" E-mail has been sent succesfully ")
+					this.props.parentCallback(e.target.id);
+				}
+				
+				if ( res.data.details === "nonEmail" ){
+					this.setState({res: "nonEmail"});
+				}
+				
+				if ( res.data.details === "emptyEmail" ){
+					this.setState({res: "emptyEmail"});
+				}
+				
+				if ( res.data.details === "emptySubject" ){
+					this.setState({res: "emptySubject"});
+				}
+				
+				if ( res.data.details === "emptyContent" ){
+					this.setState({res: "emptyContent"});
+				}
+				
 			}) 
 			
 		}
@@ -50,15 +71,22 @@ export class ContactDisplay extends Component {
 	render() {
 	
 		return (
-			<div id="contact_form_container">
-				<div id="contact_form_wrapper">
-					<input type="text" id="from_email" placeholder="Your Email" onChange={this.handleChange.bind(this)} ></input>
-					<input type="text" id="subject" placeholder="Subject" onChange={this.handleChange.bind(this)} ></input>
-					<textarea id="body_content" placeholder="Content" onChange={this.handleChange.bind(this)} ></textarea>
-					<span id="contact_submit" onClick= { this.onClick.bind(this) } > Submit </span>
+			<>
+				
+				{ this.state.res === "nonEmail" && <div id="notification_container"><span> Please Enter a Valid E-mail</span></div>}
+				{ this.state.res === "emptyEmail" && <div id="notification_container"><span> E-mail field is empty</span></div>}
+				{ this.state.res === "emptySubject" && <div id="notification_container"><span> Subject field is empty </span></div>}
+				{ this.state.res === "emptyContent" && <div id="notification_container"><span> Message field is empty </span></div>}
+				<div id="contact_form_container">
+					<div id="contact_form_wrapper">
+						<input type="text" id="from_email" placeholder="Your Email" onChange={this.handleChange.bind(this)} ></input>
+						<input type="text" id="subject" placeholder="Subject" onChange={this.handleChange.bind(this)} ></input>
+						<textarea id="body_content" placeholder="Content" onChange={this.handleChange.bind(this)} ></textarea>
+						<span id="contact_submit" onClick= { this.onClick.bind(this) } > Submit </span>
+					</div>
+					<img src={`${process.env.PUBLIC_URL}/assets/exit.svg`} id="exit_button" alt="Exit" width="3%" height="6%"  onClick= { this.onClick.bind(this) }  />
 				</div>
-				<img src={`${process.env.PUBLIC_URL}/assets/exit.svg`} id="exit_button" alt="Exit" width="3%" height="6%"  onClick= { this.onClick.bind(this) }  />
-			</div>
+			</>
 		)
 	}
 }
@@ -106,7 +134,7 @@ export class ProjectDisplay extends Component {
 				</div>
 			</div>
 
-		);
+		)
 	}
 }
 
@@ -226,7 +254,7 @@ export class AppMain extends Component {
 					{ this.state.next === true && <img src={`${process.env.PUBLIC_URL}/assets/right_arrow.svg`} id="right_button" alt="Left Arrow" width="5%" height="20%" onClick = {this.onClick.bind(this)} /> }
 				</div>
 			</div>
-		);
+		) 
 	}
 }
 

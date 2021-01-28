@@ -276,7 +276,7 @@
 }
 
 #body_content{
-	width: 100%;
+	width: 99%;
 	height: 70%;
 }
 
@@ -307,6 +307,20 @@
 #exit_button:hover{
 	cursor: pointer;
 }
+
+#notification_container{
+	position: relative;
+	width: 40%;
+	height: 7.5%;
+	top: 2.5%;
+	left: 30%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: solid;
+	border-color: red;
+}
+
 
 @media only screen and (max-width: 900px) and (min-device-width: 561px){
 	
@@ -417,4 +431,31 @@
 	#photo_container {
 		height: 20%;
 	}
+}
+
+@media only screen and (max-width: 860px) and (min-device-width: 658px){
+	
+	#contact_submit{ 
+		width: 15%;
+		left: 42.5%;
+	}
+	
+}
+
+@media only screen and (max-width: 658px) and (min-device-width: 448px){
+	
+	#contact_submit{ 
+		width: 20%;
+		left: 40%;
+	}
+	
+}
+
+@media only screen and (max-width: 448px) and (min-device-width: 0px){
+	
+	#contact_submit{ 
+		width: 30%;
+		left: 35%;
+	}
+	
 }
