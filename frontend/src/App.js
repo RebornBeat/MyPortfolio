@@ -119,9 +119,7 @@ export class ProjectDisplay extends Component {
 				</div>
 				<span id="project_title">{projectJSON.Title}</span>
 				<div id="general_container">
-					<div id="photo_container">
-						<img src={`${process.env.PUBLIC_URL}/assets/${projectJSON.PhotoName}`} alt="this slowpoke moves" width="100%" height="100%"/>
-					</div>
+					<img src={`${process.env.PUBLIC_URL}/assets/${projectJSON.PhotoName}`} alt="this slowpoke moves" width="30%" height="auto"/>
 					<div id="description_container">
 						<ul>
 							{descriptionList}
@@ -145,34 +143,38 @@ export class AppMain extends Component {
 	}
 	
 	sendData = (e) => {
-		this.props.parentCallback(e.target.id);
+		this.props.parentCallback("email");
 	}
 	
 	onClick (e) {
 		let x = 0
 		
+		console.log(e.target.className)
 		if ( e.target.id === "left_button"){
 			x = this.state.index - 1
-			this.setState({ index: x})
+			this.setState({ index: x, projectKey: Math.random()})
 		}
 		
 		if ( e.target.id === "right_button"){
 			x = this.state.index + 1 
-			this.setState({ index: x})	
+			this.setState({ index: x, projectKey: Math.random()})
 		}
 		
-		this.setState({ projectKey: Math.random()})
+		if ( e.target.classList.contains("github") ){
+			window.open("https://github.com/RebornBeat");
+		}
+		
 		
 	}
 
 	onHover (e) {
 		
-		if ( e.target.id === "github" ) {
+		if ( e.target.classList.contains("github") ) {
 			this.setState({ toggled: "github" })
 				return
 		}
 		
-		if ( e.target.id === "email" ) {
+		if ( e.target.classList.contains("email") ) {
 			this.setState({ toggled: "email" })
 			return
 		}
@@ -230,21 +232,21 @@ export class AppMain extends Component {
 						Full-Stack Web Developer
 					</div>
 					<div id="contact_container">
-						<div className="contact_wrapper" id="github" onMouseEnter= {this.onHover.bind(this)} onMouseLeave= {this.onExit.bind(this)} >
-							{ this.state.toggled != "github" && <img src={github} className="logo" alt="Logo" /> }
-							{ this.state.toggled === "github" && <img src={blue_github} className="logo" alt="Logo" /> }
-							<span className="contact_text"  > View Github </span>
+						<div className="contact_wrapper github"  onMouseEnter= {this.onHover.bind(this)} onMouseLeave= {this.onExit.bind(this)}  onClick= { this.onClick.bind(this) } >
+							{ this.state.toggled != "github" && <img src={github} className="logo github" alt="Logo" /> }
+							{ this.state.toggled === "github" && <img src={blue_github} className="logo github" alt="Logo" /> }
+							<span className="contact_text github"  > View Github </span>
 						</div>
-						<div className="contact_wrapper_mobile" id="github_mobile" >
-							<img src={round_github_mobile} className="logo_mobile" alt="Logo" /> 
+						<div className="contact_wrapper_mobile github"  onClick= { this.onClick.bind(this) }>
+							<img src={round_github_mobile} className="logo_mobile github" id="github_mobile_clicked" alt="Logo" /> 
 						</div>						
-						<div className="contact_wrapper" id="email" onMouseEnter= {this.onHover.bind(this)} onMouseLeave= {this.onExit.bind(this)} onClick= { this.sendData.bind(this) }>
-							{ this.state.toggled != "email" && <img src={email} className="logo" alt="Logo" /> }
-							{ this.state.toggled === "email" && <img src={blue_email} className="logo" alt="Logo" /> }
-							<span className="contact_text" id="email" > Contact Me </span>
+						<div className="contact_wrapper email"  onMouseEnter= {this.onHover.bind(this)} onMouseLeave= {this.onExit.bind(this)} onClick= { this.sendData.bind(this) }>
+							{ this.state.toggled != "email" && <img src={email} className="logo email" alt="Logo" /> }
+							{ this.state.toggled === "email" && <img src={blue_email} className="logo email" alt="Logo" /> }
+							<span className="contact_text email"  > Contact Me </span>
 						</div>		
-						<div className="contact_wrapper_mobile" id="email_mobile" >
-							<img src={round_email_mobile} className="logo_mobile" alt="Logo" /> 
+						<div className="contact_wrapper_mobile" id="email_mobile" onClick= { this.sendData.bind(this) } >
+							<img src={round_email_mobile} className="logo_mobile" id="mobile_clicked" alt="Logo" /> 
 						</div>						
 					</div>
 				</div>
@@ -266,11 +268,18 @@ export default class Controller extends Component {
 	
 	callbackFunction = (componentName) => {
 		
+		if ( componentName === "mobile_clicked") {
+			this.setState({displayContact: true});
+			return
+		}
+		
 		if ( componentName === "email") {
 			this.setState({displayContact: true});
-		} else {
-			this.setState({displayContact: false});
+			return
 		}
+		
+		this.setState({displayContact: false});
+		
 
 	}
 	
